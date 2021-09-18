@@ -6,6 +6,7 @@ const App = () => {
   const [num2, setNum2] = useState('');
   const [operand, setOperand] = useState('');
   const [calculation, setCalculation] = useState('');
+  const [history, setHistory] = useState('');
 
   const handlePress = input => {
     if (Number.isInteger(input)) {
@@ -34,7 +35,10 @@ const App = () => {
   };
 
   const calculate = () => {
-    setCalculation(num1 + ' ' + operand + ' ' + num2);
+    let res = num1 + ' ' + operand + ' ' + num2;
+    let hist = hist + '\n' + '------' + '\n' + res;
+    setHistory(hist);
+    setCalculation(res);
     switch (operand) {
       case '+':
         return num1 + num2;
@@ -82,6 +86,7 @@ const App = () => {
 
   return (
     <View style={styles.container}>
+      <Button title="History" onPress={() => setCalculation(history)} />
       <View style={styles.calculation}>
         <Text style={styles.calculationText}>{calculation}</Text>
       </View>
