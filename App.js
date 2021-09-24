@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Button,
+  ScrollView,
+} from 'react-native';
 
 const App = () => {
   const [num1, setNum1] = useState('');
@@ -22,6 +29,7 @@ const App = () => {
       setNum2('');
       setOperand('');
       setCalculation('');
+      setHistory('');
     } else if (input == '=') {
       setNum1(calculate());
       setNum2('');
@@ -36,7 +44,7 @@ const App = () => {
 
   const calculate = () => {
     let res = num1 + ' ' + operand + ' ' + num2;
-    let hist = hist + '\n' + '------' + '\n' + res;
+    let hist = history + '\n' + '------' + '\n' + res;
     setHistory(hist);
     setCalculation(res);
     switch (operand) {
@@ -87,9 +95,9 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Button title="History" onPress={() => setCalculation(history)} />
-      <View style={styles.calculation}>
+      <ScrollView style={styles.calculation}>
         <Text style={styles.calculationText}>{calculation}</Text>
-      </View>
+      </ScrollView>
       <View style={styles.result}>
         <Text style={styles.resultText}>
           {num1} {operand} {num2}
@@ -110,15 +118,16 @@ const styles = StyleSheet.create({
   calculation: {
     flex: 2,
     backgroundColor: '#e5e8e8',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    // justifyContent: 'center',
+    // alignItems: 'flex-end',
   },
   calculationText: {
     fontSize: 30,
     color: 'black',
   },
   result: {
-    flex: 1,
+    // flex: 1,
+    height: 100,
     backgroundColor: '#aeb6bf',
     justifyContent: 'center',
     alignItems: 'flex-end',
@@ -128,7 +137,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   buttons: {
-    flexGrow: 7,
+    flexGrow: 2,
     flexDirection: 'row',
   },
   numbers: {
