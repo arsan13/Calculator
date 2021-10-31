@@ -33,6 +33,7 @@ const App = () => {
     } else if (input == '=') {
       setNum1(calculate());
       setNum2('');
+      setOperand('');
     } else {
       if (num2 != '') {
         setNum1(calculate());
